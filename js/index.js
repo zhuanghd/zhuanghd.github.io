@@ -1,6 +1,3 @@
-if (window.location.protocol == 'https:') {
-    window.location.href = 'http:' + window.location.href.substr(6);
-}
 
 $(function() {
 
