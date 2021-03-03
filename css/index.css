@@ -1,8 +1,5 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "MicrosoftYaHei", "WenQuanYi Micro Hei", sans-serif;
-
-    margin: 0;
-    padding: 0;
 }
 
 
@@ -17,4 +14,140 @@ body {
     margin: 0px auto;
     position: absolute;
     bottom: 5px;
+}
+
+/* *, *::before {
+  animation: none !important;
+}
+.boat { left: 30% !important; } */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(#adf, #bef 20%, #9de 0)
+}
+
+.title {
+    padding-left: 10px;
+}
+
+@keyframes biting {
+  0%, 30%, 100% { clip-path: polygon(-10% -20%, 0% -50%, 100% -50%, 100% 60%, 80% 60%, 100% 60%, 100% 125%, -10% 125%);}
+  15% { clip-path: polygon(-10% -20%, 0% -50%, 100% -50%, 100% 60%, 80% 50%, 100% 100%, 100% 125%, -10% 125%); }
+}
+
+@keyframes swim {
+  0% {
+    transform: translate(0, 0) scaleX(1);
+  }
+  50% {
+    transform: translate(58vw, 0) scaleX(1);
+  }
+  50.1% {
+    transform: translate(58vw, 0) scaleX(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleX(-1);
+  }
+}
+
+.shark {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  width: 34vw;
+  height: 14vw;
+  background-image:
+    radial-gradient(circle at 83% 14%, white 1%, transparent 0),
+    radial-gradient(circle at 81% 16%, black 4%, transparent 0),
+    radial-gradient(at 54% 0%, gray 60%, transparent 0);
+  clip-path: polygon(-10% -50%, 100% -50%, 100% 60%, 80% 60%, 100% 60%, 100% 125%, -10% 125%);
+  animation: biting 5.25s infinite, swim 13s infinite linear;
+}
+
+.shark::before {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100% / 80% 100% 50% 120%;
+  width: 50%;
+  height: 150%;
+  top: -35%;
+  box-shadow: 6vw -0.5vw 0 -0.75vw gray
+}
+
+.shark::after {
+  content: "";
+  display: block;
+  position: absolute;
+  color: rgba(0,0,0,0.5);
+  width: 8vw;
+  height: 10vw;
+  border-radius: 50%;
+  transform: rotate(-20deg);
+  top: 0vw;
+  left: 22vw;
+  box-shadow:
+    inset 1vw 0vw 0 -0.75vw,
+    -1.5vw 0 0 -0.5vw gray,
+    -2vw 0 0 -0.75vw,
+    -26vw -17vw 0 1vw #9de,
+    -22vw -14vw gray;
+}
+
+@keyframes sleep {
+  0% {
+    text-indent: 3em;
+    color: black;
+    padding-top: 1.2rem;
+  }
+  100% {
+    text-indent: 5em;
+    color: transparent;
+    padding-top: 0;
+  }
+}
+
+.bubbles {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  width: 34vw;
+  height: 14vw;
+  animation: swim 13s infinite linear;
+}
+
+@keyframes popup {
+  0%, 99.9% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes bubbleUp {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+    box-shadow: 3vw -2vw 0 -1vw white, -4vw 1vw 0 -0.5vw white;
+  }
+  50%, 100% {
+    transform: translate(-20vw, -60vh);
+    opacity: 0;
+    box-shadow: 2vw 1vw 0 -1vw white, -3vw -2vw 0 -0.75vw white;
+  }
+}
+
+.bubbles::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 4vw;
+  height: 4vw;
+  background: white;
+  border-radius: 50%;
+  animation:popup 22s linear 1, bubbleUp 6s infinite;
+  animation-fill-mode: forwards;
+  animation-delay: 0s, 22s;
+  box-shadow: 3vw -2vw 0 -1vw white, -4vw 1vw 0 -0.5vw white;
 }
